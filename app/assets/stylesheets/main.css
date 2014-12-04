@@ -1,0 +1,1028 @@
+
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+body, html{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+	color:#444;
+	line-height: 1.5;
+
+}
+
+
+ul, li{
+	list-style: none;
+	box-sizing: border-box;
+	margin: 0; padding: 0;
+}
+
+
+
+h1,h2,h3,h4,h5,h6{
+
+	text-transform: uppercase;
+	color:#333
+}
+h1{
+	font-size: 1.2em;
+	margin: 1.5em;
+}
+
+#wrap {
+
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+
+}
+#wrap > div {
+/*	display: inline-block;*/
+	display: inline-table;
+	box-sizing: border-box;
+	height: 100%;
+	vertical-align: top;
+	background: #f6f6f6;
+	transition: .2s ease-out;
+/*	position: relative*/
+}
+#wrap > div:hover{
+	background: #fafafa
+}
+
+
+
+#menu {
+	width: 25%;
+	height: 100%;
+	border-right: #f5f5f5 1px solid;
+font-size: 1rem;
+	padding: 0;
+	position: fixed
+
+
+}
+
+#login{
+	width: 100%;
+	height: 100%;
+	display: table
+}
+#login > div{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center
+}
+#login > div > div{
+display: inline-block
+}
+#login svg{
+	width: 200px;
+	height: 200px;
+	margin: 5% 0
+}
+
+#content {
+	width: 75%;
+	font-size: 1rem;
+	margin-left: 25%
+}
+
+
+ul.menu{
+	padding: 1em;
+	text-align: right;
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+
+}
+ul.menu li{
+	font-size: .875em;
+	box-sizing: border-box;
+
+	padding: 1em 15% .2em 15%;
+	width: 100%;
+	text-transform: uppercase;
+	transition: .2s ease-out
+}
+ul.menu ul li{
+	cursor: pointer;
+	font-size: .7em;
+	padding: .5em 18%;
+}
+ul.menu ul li:hover{
+
+/*	padding: .5em 19% .5em 17%;*/
+	text-decoration: underline
+}
+
+
+ul.menu > li:last-child{
+
+	font-size: .7em;
+	color: #888;
+	padding: .5em 18%;
+	padding-top: 3em;
+	cursor: pointer;
+	text-decoration: underline
+}
+ul.menu > li:last-child:hover{
+	opacity: .5
+}
+
+/*
+#logo{
+	background:url('../img/ubikelogo.svg') no-repeat right;
+	height: 100px;
+	width: 100%;
+	box-sizing: border-box;
+	right: 17%;
+	margin-top:-120px;
+	position: absolute
+}
+*/
+
+ul.menu svg{
+	margin-right: 15%;
+	margin-top:-120px;
+}
+
+
+#contentWrap{
+	display: table-cell;
+	vertical-align: middle;
+	box-sizing: border-box;
+	padding:  1rem 3rem;
+
+
+}
+
+/*ubike radio*/
+
+
+ul.radioPost li{
+/*	background: #F6F6F6;*/
+	background: rgba(0,0,0,.02);
+	box-sizing: border-box;
+	padding: 1rem 2rem 1rem 3rem;
+
+	position: relative;
+	margin:1em 0;
+
+	width: 100%;
+
+transition:.2s ease-out;
+/*overflow: hidden;*/
+	backface-visibility: hidden
+
+}
+/*
+ul.radioPost li:before{
+	content:'';
+	background: linear-gradient(to bottom , #A6F0DE , #02A982);
+	position: absolute;
+
+	top:15%;
+	left: 5px;
+	width: 2px;
+	height: 70%;
+	border-radius: 1px;
+
+}
+*/
+ul.radioPost li > div span{
+	padding:  .5em;
+	box-sizing: border-box;
+}
+ul.radioPost span[name]{
+	font-size: 1.5em;
+/*	font-weight: bold;*/
+	text-transform: capitalize;
+	margin-left: -.5em;
+	position: relative;
+	cursor: pointer;
+
+}
+ul.radioPost span[name]:after{
+	content:'says';
+	font-size: .5em;
+	margin-left: 1em;
+	cursor: default;
+	font-style: italic
+}
+ul.radioPost [time]{
+	font-size: .8em;
+	letter-spacing: .05em
+}
+ul.radioPost [userPhoto]{
+	position: absolute;
+	top:10px;left: -20px;
+	width: 50px;height: 50px;
+	background: #666;
+	border-radius:50px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: #ddd 0 0 0 2px
+
+
+}
+ul.radioPost [message]{
+	font-size: .8em;
+	margin-top: 1em;
+	letter-spacing: .05em
+}
+
+ul.radioPost li div[controler]{
+position: absolute;
+	right: 0;bottom:0;
+	transition: .2s ease-out;
+	opacity: 0;
+	transform: translateY(20px)
+
+}
+
+ul.radioPost li span[controler="delete"]{
+	display: inline-block;
+	padding: 1em 3em;
+	font-size: .8em;
+	text-transform: uppercase;
+	color: #EF6370;
+	cursor: pointer;
+	transition: .2s ease-out
+
+}
+/*
+ul.radioPost li span[controler="delete"]:hover{
+	transform: scale(1.05)
+}
+*/
+ul.radioPost li:hover{
+	background: #F6F6F6;
+	transform: translateX(-5px);
+}
+ul.radioPost li:hover div[controler]{
+transform: translateY(0) translateX(5px);
+	opacity: 1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+form{
+	box-sizing: border-box;
+/*	padding: 1rem 2rem;*/
+
+	position: relative;
+	font-size: 0
+}
+
+form h2{
+	font-weight: normal;
+	font-size: .7em
+}
+
+
+form fieldset{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 1rem
+}
+#newPost{
+width: 80%
+}
+
+fieldset > div{
+	box-sizing: border-box;
+	padding: 0 .5em;
+	cursor: pointer
+}
+fieldset > div + div{
+	margin-top: .5em
+}
+fieldset > h2{
+	margin-left: 2em;
+
+}
+fieldset[w="20"]{
+	width: 20%
+}
+fieldset[w="33"]{
+	width: 33.333%
+}
+fieldset[w="66"]{
+	width: 66.666%
+}
+fieldset[w="full"]{
+	width: 100%
+}
+fieldset[w="half"],fieldset[w="50"]{
+	width: 50%;
+
+}
+fieldset[w="15"]{
+	width: 15%
+}
+input, textarea{
+	width: 100%;
+	box-sizing: border-box;
+	height: 2.5em;
+	padding: 0 1.5em;
+	border: rgba(0,0,0,.02) 1px solid;
+	color:#888;
+	outline: none;
+/*	line-height: 2.5em;*/
+	height: 2.5rem;
+	trasition: .2s ease-out
+}
+textarea{
+/*	height: 10em;*/
+	height: auto;
+	resize: none;
+	padding: 1rem 1.5rem;
+	line-height: 1.5rem
+}
+::-webkit-input-placeholder {
+   font-weight: normal;
+	font-size: .8em;
+	text-transform: capitalize;
+	color: #ddd;
+	height: 2.5em;
+	font-style: italic
+}
+
+input[type="submit"]{
+/*	background: linear-gradient(to bottom left , #A6F0DE , #02A982);*/
+	margin: 2em 0;
+	text-transform: uppercase;
+	color:#fff;
+	height:3em;
+	line-height: 3em;
+	border-radius: .1em;
+	transition:.2s ease-out;
+	background: #AEAEAE
+}
+
+input[type="submit"]:hover{
+	transform: translateX(5px);
+	background: #BBBBBB;
+/*	box-shadow: rgba(0,0,0,.1) 0 1px;*/
+}
+
+div[select]{
+	position: relative
+}
+
+div[select] select{
+	position: absolute;
+	width: 100%;height: 100%;
+	top:0;left: 0;
+	opacity: 0;
+
+/*	display: none;*/
+	text-transform: capitalize;
+	-webkit-appearance :none
+}
+div[select]:after{
+	content:'';
+	position: absolute;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 5px 5px 0 5px;
+border-color: #888888 transparent transparent transparent;
+	right: 10%;
+	top:45%;
+
+}
+div[inputFile]{
+	position: relative
+}
+div[inputFile] input[type="file"]{
+	position: absolute;
+	width: 100%;height: 100%;
+	top:0;left: 0;
+	opacity: 0;
+	cursor: pointer
+}
+
+div[preview]
+{
+	position: absolute;
+	bottom:1em;right: 5%;
+	width: 50px;height: 50px;
+	background: #666;
+	border-radius:50px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-shadow: #ddd 0 0 0 2px
+}
+
+div[preview="no"]{
+	background: #DDDDDD
+}
+div[preview="no"]:after{
+	content:'?';
+	color:#AEAEAE;
+	position: absolute;
+	width: 100%;height: 100%;
+	text-align: center;
+	line-height: 50px;
+
+}
+ul.onlineAds ul li{
+	position: relative
+}
+ul.onlineAds h1{
+	font-size: 1.2rem
+}
+ul.onlineAds form > fieldset{
+	width: 100%;
+
+}
+
+ul.onlineAds fieldset > div{
+	padding: 0;
+
+}
+ul.onlineAds input, ul.onlineAds textarea{
+	border: 0
+}
+ul.onlineAds fieldset.date div{
+	position: relative;
+	font-size: 0;
+}
+ul.onlineAds fieldset.date input{
+/*	text-align: center*/
+	font-size: .875rem;
+	width: 50%;
+	display: inline-block
+
+}
+ul.onlineAds textarea{
+	font-size: .875em;
+}
+
+ul.onlineAds input,ul.onlineAds textarea,ul.onlineAds div[controler]{
+	font-style: italic;
+	border-right:#fafafa 1px solid;
+	border-bottom:#fafafa 1px solid;
+}
+ul.onlineAds input:focus,ul.onlineAds textarea:focus{
+	font-style: normal
+}
+ul.onlineAds textarea{
+/*	height: 3em*/
+	transition: .3s ease-out
+}
+ul.onlineAds textarea:focus{
+	height: 15em
+}
+
+ul.onlineAds span.leftTime{
+	position: absolute;
+	font-size: .7em;
+	right: 0;
+	top:.8rem;
+	font-style: italic;
+	color: #EF6370;
+	padding: 0 10%
+}
+ul.onlineAds span.leftTime:after{
+	content:'\aleft';
+
+}
+
+
+ul.onlineAds div[preview]{
+	position: absolute;
+	left: -20px;
+	top:-5px;
+}
+ul.onlineAds fieldset:first-child input{
+	padding-left: 2.5em
+}
+
+ul.onlineAds div[controler]{
+background: #FFFFFF;
+	height: 2.5em;
+	line-height: 2.5em;
+	text-align: right;
+	padding: 0 1.5em;
+	cursor: default
+}
+ul.onlineAds div[controler] span{
+	display: inline-block;
+	font-size: .8em
+}
+ul.onlineAds div[controler] span[status]{
+	float: left
+}
+ul.onlineAds span[controler]{
+	text-transform: uppercase;
+	padding: 0 2em;
+	cursor: pointer;
+	opacity: 0;
+	transform: translateY(5px);
+	transition:.2s ease-out
+
+}
+span[controler]:hover{
+	transform: scale(1.05)
+}
+span[controler="delete"]{
+	color: #EF6370;
+}
+span[controler="edit"]{
+	color: #bbb
+}
+ul.onlineAds div[controler]:hover span[controler]{
+	transform: translateY(0);
+	opacity: 1
+
+}
+ul.onlineAds div[controler]:hover span[controler]:hover{
+	transform: scale(1.05)
+}
+
+
+
+ul.listAds *{
+	transition: .2s ease-out
+}
+ul.listAds li,ul.listAds ul li{
+	position: relative
+}
+
+ul.listAds h1{
+	font-size: 1.2rem
+}
+
+
+ul.listAds li[status="list"] h2{
+	font-size: 0;
+}
+ul.listAds li[status="list"] input,ul.listAds li[status="list"] textarea{
+/*	border:0;*/
+/*
+	border-left:#fafafa 1px solid;
+	border-bottom:#fafafa 1px solid;
+*/
+	border-color: transparent transparent #fafafa #fafafa;
+}
+
+ul.listAds li[status="list"] textarea{
+	font-size: .85em;
+	line-height: 1.5em
+}
+
+
+ul.listAds li[status="list"] fieldset[hideme]{
+	overflow: hidden;
+	position: absolute;
+	opacity: 0;
+	z-index: -1
+}
+
+
+ul.listAds li[status="list"] fieldset[hideme] *{
+	padding: 0
+}
+
+
+ul.listAds li[status="list"] [inputfile]{
+	position: absolute;
+	left: -20px;
+	top:-5px;
+
+}
+ul.listAds li[status="list"] [inputfile] [preview]{
+	top:0;left: 0;
+}
+ul.listAds li[status="list"] [inputfile] input{
+	overflow: hidden;
+	position: absolute;
+	opacity: 0;
+}
+ul.listAds li[status="list"] fieldset > div{
+	padding: 0
+}
+
+ul.listAds li[status="list"] fieldset:first-child + fieldset,
+
+ul.listAds li[status="list"] fieldset:first-child + fieldset + fieldset{
+	position: absolute;
+	right: 0;
+	width: 15%;
+
+}
+ul.listAds li[status="list"] fieldset:first-child + fieldset input,
+
+ul.listAds li[status="list"] fieldset:first-child + fieldset + fieldset input{
+	background: none;
+	font-size: .8em
+
+
+}
+ul.listAds li[status="list"] fieldset:first-child + fieldset{
+	right: 15%;
+}
+ul.listAds li[status="list"]{
+	position: relative
+}
+
+ul.listAds li[status="list"] #title{
+	padding-left: 2.5em
+}
+
+ul.adList br{
+	line-height: 2.5em
+}
+
+
+
+
+ul.adList ul{
+	font-size: 0
+}
+ul.adList ul li{
+	display: inline-block;
+	width: 10%;
+	font-size: 1rem;
+	text-align: center;
+	margin: .5em 0
+}
+
+ul.adList div[pinImage]{
+	display: inline-block;
+	border-radius: 100%;
+	width: 70%;
+	padding-bottom: 70%;
+	border:#fff 2px solid;
+	box-shadow: rgba(0,0,0,.05) 0 1px 0 1px;
+	background-position: center center;
+	background-size: 100%;
+	position: relative
+}
+
+ul.adList div[info]{
+	position: absolute;
+	bottom:100%;
+/*
+	margin-bottom:2em;
+	margin-left: -3em;
+*/
+/*	margin: 0 0 2em -3em;*/
+	margin: 0 0 2em 0;
+	background: rgba(255,255,255,.9);
+	opacity: 0;
+	transition:.2s ease-out;
+	font-size: .7em;
+	width: 500px;
+	text-align: left;
+	box-sizing: border-box;
+	padding: 1em 1.5em;
+	z-index: -1
+}
+
+
+/*
+ul.adList ul li:nth-child(n+6) div[info]{
+	right: 0; margin: 0 -3em 2em 0;
+}
+ul.adList ul li:nth-child(n+11) div[info]{
+	left: 0; margin: 0 0 2em -3em;
+}
+ul.adList ul li:nth-child(n+16){
+
+}
+ul.adList ul li:nth-child(n+21){
+
+}
+*/
+
+
+
+
+
+
+ul.adList div[pinImage]{
+	transition: .2s ease-out;
+	cursor: pointer
+}
+ul.adList div[pinImage]:hover{
+	transform: scale(1.05);
+	background-size: 110%
+}
+ul.adList div[pinImage]:hover div[info]{
+	opacity: 1;
+	z-index: 1
+
+}
+ul.adList div[info] span{
+	display: block
+}
+ul.adList span[title]{
+	font-size: 1.3em
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
