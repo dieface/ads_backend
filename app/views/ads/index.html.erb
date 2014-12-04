@@ -1,0 +1,50 @@
+<h1>Index of Ads</h1>
+<!-- #  scale       :string(255)
+#  start_date  :datetime
+#  end_date    :datetime
+#  lat         :float
+#  lng         :float
+#  url         :string(255)
+#  title       :string(255)
+#  description :text
+#  user_id     :integer
+#  default_photo
+ -->
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+	    <th>Ad Id</th>
+      <th>Scale</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Url</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>User Id</th>
+      <th>Photo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ads.each do |ad| %>
+    <tr>
+      <td> <%= ad.id %> </td>
+      <td> <%= ad.scale %> </td>
+      <td> <%= ad.start_date %> </td>
+      <td> <%= ad.end_date %> </td>
+      <td> <%= ad.lat %> </td>
+      <td> <%= ad.lng %> </td>
+      <td> <%= ad.url %> </td>
+      <td> <%= ad.title %> </td>
+      <td> <%= ad.description %> </td>
+      <td> <%= ad.user_id %> </td>
+      <td> 
+        <%= render_ad_photo(ad.default_photo) %>
+      </td>
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>

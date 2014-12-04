@@ -43,3 +43,14 @@ gem 'devise'
 
 # Use simple_form for sign_up, sign_in
 gem 'simple_form'
+
+# Upload
+gem 'carrierwave'
+
+# Image
+gem "mini_magick"
+
+group :development do 
+	# Show db schema
+  gem "annotate"
+end

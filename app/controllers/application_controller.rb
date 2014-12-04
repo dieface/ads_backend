@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
 
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 
-	protected
+  def admin_required
+    current_user.admin?
+  end
 
 	def login_required
 		if current_user.blank?

@@ -8,9 +8,22 @@ Rails.application.routes.draw do
   resources :home do
   end
 
+  namespace :admin do
+    resources :ads do
+    end
+  end
+
+  resources :ads do
+  end
+
+  namespace :account do 
+    resources :ads
+  end
+
   devise_scope :user do
     authenticated :user do
-      root 'home#index', as: :authenticated_root
+      root 'ads#new', as: :authenticated_root
+      # root :to => 'admin/ads#new'
     end
 
     unauthenticated do
