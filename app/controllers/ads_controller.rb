@@ -2,6 +2,7 @@ class AdsController < ApplicationController
 
 	# before_action :login_required, :only => [:new, :create, :edit, :update, :destroy]
 	before_action :authenticate_user!
+	# after_save 		:write_json
 
 	def available
 		# @ads = current_user.ads.find_by aasm_state: 'available'
@@ -44,6 +45,7 @@ class AdsController < ApplicationController
 	def create
 		@ad = current_user.ads.build(ad_params)
 		if @ad.save
+			write_json
 			redirect_to ads_path
 		else
 			render :new
@@ -71,7 +73,37 @@ class AdsController < ApplicationController
 		redirect_to ads_path
 	end
 
+	def image_full_path(img_url)
+	    request.protocol + request.host_with_port + img_url
+	end	
+
 	private
+
+	def write_json
+	  ads_json = []
+	  Ad.all.each do |ad|
+	    ad_json = {
+				"id" => ad.id,
+				"scale" => ad.scale,
+				"start_date" => ad.start_date,
+				"end_date" => ad.end_date,
+				"lat" => ad.lat,
+				"lng" => ad.lng,
+				"url" => ad.url,
+				"title" => ad.title,
+				"description" => ad.description,
+				"created_at" => ad.created_at,
+				"updated_at" => ad.updated_at,
+				"user_id" => ad.user_id,
+				"aasm_state" => ad.aasm_state,
+				"photo_url" => image_full_path(ad.default_photo.image.url)
+	    } 
+	    ads_json << ad_json
+	  end
+	  File.open("public/ads.json","wb") do |f|
+	    f.write(ads_json.to_json)
+	  end 
+	end
 
   def ad_params
 		params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description, :photos_attributes => [:image])

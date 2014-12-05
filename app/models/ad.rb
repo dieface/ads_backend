@@ -20,8 +20,6 @@
 class Ad < ActiveRecord::Base
 	belongs_to :owner, :class_name => "User", :foreign_key => :user_id
 
-  # before_save :parse_date
-
   has_many :photos, inverse_of: :ad
   accepts_nested_attributes_for :photos
 
@@ -35,6 +33,9 @@ class Ad < ActiveRecord::Base
 	validates :description, :presence => true
 	validates :photos, :presence => true
 
+  # before_save :parse_date
+	# after_save 	:write_json
+
   def default_photo
     photos.first
   end
@@ -43,6 +44,40 @@ class Ad < ActiveRecord::Base
 		user && user == owner
 	end
 
+
+	# def write_json
+	#   ads_json = []
+	#   Ad.all.each do |ad|
+	#     ad_json = {
+	# 			"id" => ad.id,
+	# 			"scale" => ad.scale,
+	# 			"start_date" => ad.start_date,
+	# 			"end_date" => ad.end_date,
+	# 			"lat" => ad.lat,
+	# 			"lng" => ad.lng,
+	# 			"url" => ad.url,
+	# 			"title" => ad.title,
+	# 			"description" => ad.description,
+	# 			"created_at" => ad.created_at,
+	# 			"updated_at" => ad.updated_at,
+	# 			"user_id" => ad.user_id,
+	# 			"aasm_state" => ad.aasm_state,
+	# 			"default_photo_url" => full_image_path(ad.default_photo.image.path)
+	#     } 
+	#     ads_json << ad_json
+	#   end
+	#   File.open("public/ads.json","wb") do |f|
+	#     f.write(ads_json.to_json)
+	#   end 
+	# end
+
+	# def image_abs_url(image_url)
+	#   URI.join(root_url, image_url)
+	# end
+
+	# def full_image_path(img_path)
+	#     request.protocol + request.host_with_port + image_path(img_path)
+	# end	
   # def parse_date
   #   unless start_date_string.blank?
   #     self.start_date = DateTime.parse(start_date_string)
