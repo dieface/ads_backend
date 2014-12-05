@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   resources :ads do
+    get 'available', on: :collection
+    get 'unavailable', on: :collection
   end
 
   namespace :account do 

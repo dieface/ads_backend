@@ -3,6 +3,35 @@ class AdsController < ApplicationController
 	# before_action :login_required, :only => [:new, :create, :edit, :update, :destroy]
 	before_action :authenticate_user!
 
+	def available
+		# @ads = current_user.ads.find_by aasm_state: 'available'
+		
+		time_current = Time.current
+		@ads = current_user.ads.where("start_date <= ? AND end_date >= ?", time_current, time_current)
+
+		@ads.each do |ad|
+			if ad.aasm_state == "available"
+				ad.aasm_state = "available"
+				ad.save	
+			end
+		end
+
+		@global_ads = @ads.where("scale == ?", 'Global')
+		@city_ads = @ads.where("scale == ?", 'City')
+		@road_ads = @ads.where("scale == ?", 'Road')
+	end
+
+	def unavailable
+		# @ads = Ad.find_by aasm_state: 'unavailable'
+
+		time_current = Time.current
+		@ads = current_user.ads.where("aasm_state == ?", 'unavailable')
+
+		@global_ads = @ads.where("scale == ?", 'Global')
+		@city_ads = @ads.where("scale == ?", 'City')
+		@road_ads = @ads.where("scale == ?", 'Road')		
+	end
+
 	def index
 		@ads = Ad.all
 	end

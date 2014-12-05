@@ -1,4 +1,4 @@
-  <!--[if lt IE 7]>
+        <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
@@ -21,9 +21,8 @@
 			</ul>
 			<li>lbs ad manager</li>
 			<ul>
-<!-- 				<li onclick="location.href='/onlineAds.html'">online</li> -->
-				<li onclick="location.href='<%= available_ads_path %>'">online</li>
-				<li onclick="location.href='<%= unavailable_ads_path %>'">incomming</li>
+				<li onclick="location.href='/onlineAds.html'">online</li>
+				<li onclick="location.href='/incomming.html'">incomming</li>
 				<li onclick="location.href='/newAds.html'">create new</li>
 
 			</ul>
@@ -32,98 +31,75 @@
 	</div>
 	<div id="content">
 		<div id="contentWrap">
-			<h1>create new</h1>
-			<!-- <form id="newAds"> -->
-			<%= form_for @ad, :html => { :id => "newAds" } do |f| %>			
-				<fieldset w="33">
-					<h2>scale</h2>
-					<div select>
-						<!-- <input id="startDate" type="text" placeholder="choose level"/> -->
-						<%= f.text_field :scale, :id => "startDate", :as => :text, :placeholder => "choose level"%>
-						<select>
-							<option value='Global'>global</option>
-							<option value='City'>city</option>
-							<option value='Road'>road</option>
-						</select>
-					</div>
-				</fieldset>
-				<fieldset w="33">
-					<h2>start date</h2>
-					<div>
-						<!-- <input id="startDate" type="text" placeholder="from mmddyyyy"/> -->
-						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "from 2011-05-19 10:30:14"%>
-					</div>
 
-				</fieldset>
-				<fieldset w="33">
-					<h2>expire date</h2>
-					<div>
-						<!-- <input id="startDate" type="text" placeholder="to mmddyyyy"/> -->
-						<%= f.text_field :end_date, :id => "startDate", :as => :text, :placeholder => "to 2011-05-20 10:30:14"%>
-					</div>
-
-				</fieldset>
-<fieldset w="half">
-					<h2>decimal degrees</h2>
-					<div>
-						<!-- <input id="Latitude" type="text" placeholder="Latitude,Longitude"/> -->
-						<%= f.text_field :lat, :id => "Latitude", :as => :text, :placeholder => "Latitude"%>
-						<%= f.text_field :lng, :id => "Latitude", :as => :text, :placeholder => "Longitude"%>
-					</div>
+			<ul class="adList">
 
 
-
-				</fieldset>
-				<fieldset w="half">
-					<h2>icon</h2>
-					<div inputFile>
-						<input type="text" placeholder="no file chosen"/>
-						<!-- <input id="adIcon" type="file" accept="image/png, image/svg" /> -->
-
-						<%= f.fields_for :photos do |c| %>
-				      <%= c.file_field :image, :id => "adIcon",:accept => "image/png, image/svg" %>
-				    <% end %>
-
-						<div preview="yes" style="background-image:url('/img/pindemo.svg')"></div>
-					</div>
-
-
-
-				</fieldset>
-				<fieldset w="full">
-					<h2>url</h2>
-					<div>
-						<!-- <input id="url" type="text" placeholder="add link"/> -->
-						<%= f.text_field :url, :id => "url", :as => :text, :placeholder => "add link"%>
-					</div>
-				</fieldset>
-
-				<fieldset w="full">
-					<h2>title</h2>
-					<div>
-						<!-- <input id="title" type="text" placeholder="add title"/> -->
-						<%= f.text_field :title, :id => "title", :as => :text, :placeholder => "add title"%>
-					</div>
-				</fieldset>
-				<fieldset w="full">
-					<h2>description</h2>
-					<div>
-						<!-- <textarea rows="3" placeholder="mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note"> -->
-						<!-- </textarea> -->
-						<%= f.text_area :description, :rows => 3, :placeholder => "mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note" %>
-					</div>
-				</fieldset>
-
-				<fieldset w="33">
-					<div>
-						<!-- <input type="submit" value="submit"/> -->
-						<%= f.submit "submit" %>
-					</div>
-				</fieldset>
+				<li>
+					<h1>global</h1>
+					<ul>
+						<% @global_ads.each do |g| %>
+						<li>
+							<div pinImage style="background-image:url('<%= g.default_photo.image.url %>')">
+								<div info>
+									<span title><%= g.title %></span>
+									<span description><%= g.description %></span>
+								</div>
+							</div>
+						</li>
+						<% end %>
+					</ul>
 
 
-			<!-- </form> -->
-			<% end %>
+	
+				</li>
+				<li>
+					<h1>city</h1>
+
+					<ul>
+						<% @city_ads.each do |c| %>
+						<li>
+							<div pinImage style="background-image:url('<%= c.default_photo.image.url %>')">
+								<div info>
+									<span title><%= c.title %></span>
+									<span description><%= c.description %></span>
+								</div>
+							</div>
+						</li>
+						<% end %>
+					</ul>
+
+				</li>
+				<li>
+					<h1>road</h1>
+
+					<ul>
+						<% @road_ads.each do |r| %>
+						<li>
+							<div pinImage style="background-image:url('<%= r.default_photo.image.url %>')">
+								<div info>
+									<span title><%= r.title %></span>
+									<span description><%= r.description %></span>
+								</div>
+							</div>
+						</li>
+						<% end %>						
+					</ul>
+
+				</li>
+				<li>
+					<h1>whats next</h1>
+
+					<ul></ul>
+
+				</li>
+
+
+			</ul>
+
+
+
+
 		</div>
 
 	</div>
@@ -133,33 +109,40 @@
 
 
 
-        <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-        <!-- // <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script> -->
-        <!-- // <script src="js/plugins.js"></script> -->
-        <!-- // <script src="js/main.js"></script> -->
+
+
+
+
+
+
+
+        <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script> -->
 
 		<script type="text/javascript">
+			var section = $('ul.adList ul')
 
 
-			$('select').change(function(){
-				$(this).prev().val($(this).val())
-			})
+			for(var i = 0 ;i < section.length;i++){
+				for(var j = 0; j < section.eq(i).find('li').length; j++){
 
-			$('[select]').click(function(){
-				$(this).find('select').trigger('click')
-			})
-			$('[type=file]').change(function(e){
+					var indexNum = section.eq(i).find('li').eq(j).index()%10
+					var target = section.eq(i).find('li').eq(j).find('[info]')
+					target.css('left',-150-indexNum*25)
+				}
 
-				var fileName = $(this).val().split('/').pop().split('\\').pop();
-    console.log(fileName);
-				$(this).prev().val(fileName)
 
-			})
+
+
+			}
+
+
 
 
 
 		</script>
-
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

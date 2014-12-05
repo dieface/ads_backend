@@ -14,6 +14,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  user_id     :integer
+#  aasm_state  :string(255)      default("unavailable")
 #
 
 class Ad < ActiveRecord::Base
@@ -32,6 +33,7 @@ class Ad < ActiveRecord::Base
 	validates :url, :presence => true
 	validates :title, :presence => true
 	validates :description, :presence => true
+	validates :photos, :presence => true
 
   def default_photo
     photos.first

@@ -21,9 +21,8 @@
 			</ul>
 			<li>lbs ad manager</li>
 			<ul>
-<!-- 				<li onclick="location.href='/onlineAds.html'">online</li> -->
-				<li onclick="location.href='<%= available_ads_path %>'">online</li>
-				<li onclick="location.href='<%= unavailable_ads_path %>'">incomming</li>
+				<li onclick="location.href='/onlineAds.html'">online</li>
+				<li onclick="location.href='/incomming.html'">incomming</li>
 				<li onclick="location.href='/newAds.html'">create new</li>
 
 			</ul>
@@ -32,98 +31,256 @@
 	</div>
 	<div id="content">
 		<div id="contentWrap">
-			<h1>create new</h1>
-			<!-- <form id="newAds"> -->
-			<%= form_for @ad, :html => { :id => "newAds" } do |f| %>			
-				<fieldset w="33">
-					<h2>scale</h2>
-					<div select>
-						<!-- <input id="startDate" type="text" placeholder="choose level"/> -->
-						<%= f.text_field :scale, :id => "startDate", :as => :text, :placeholder => "choose level"%>
-						<select>
-							<option value='Global'>global</option>
-							<option value='City'>city</option>
-							<option value='Road'>road</option>
-						</select>
-					</div>
-				</fieldset>
-				<fieldset w="33">
-					<h2>start date</h2>
-					<div>
-						<!-- <input id="startDate" type="text" placeholder="from mmddyyyy"/> -->
-						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "from 2011-05-19 10:30:14"%>
-					</div>
 
-				</fieldset>
-				<fieldset w="33">
-					<h2>expire date</h2>
-					<div>
-						<!-- <input id="startDate" type="text" placeholder="to mmddyyyy"/> -->
-						<%= f.text_field :end_date, :id => "startDate", :as => :text, :placeholder => "to 2011-05-20 10:30:14"%>
-					</div>
+			<ul class="listAds">
+			<form><div>
 
-				</fieldset>
-<fieldset w="half">
-					<h2>decimal degrees</h2>
-					<div>
-						<!-- <input id="Latitude" type="text" placeholder="Latitude,Longitude"/> -->
-						<%= f.text_field :lat, :id => "Latitude", :as => :text, :placeholder => "Latitude"%>
-						<%= f.text_field :lng, :id => "Latitude", :as => :text, :placeholder => "Longitude"%>
-					</div>
+				<li>
+					<h1>global</h1>
+					<ul>
 
+						<% @global_ads.each do |g| %>
+						<li status="list">
+							<fieldset w="33" hideme>
+								<h2>scale</h2>
+								<div select>
+									<input id="startDate" type="text" placeholder="choose level"/>
+									<select>
 
+										<option value='Global' selected="selected">global</option>
+										<option value='City'>city</option>
+										<option value='Road'>road</option>
+									</select>
+								</div>
+							</fieldset>
 
-				</fieldset>
-				<fieldset w="half">
-					<h2>icon</h2>
-					<div inputFile>
-						<input type="text" placeholder="no file chosen"/>
-						<!-- <input id="adIcon" type="file" accept="image/png, image/svg" /> -->
+							<fieldset w="33">
+								<h2>start date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= g.start_date %>" />
+								</div>
 
-						<%= f.fields_for :photos do |c| %>
-				      <%= c.file_field :image, :id => "adIcon",:accept => "image/png, image/svg" %>
-				    <% end %>
+							</fieldset>
 
-						<div preview="yes" style="background-image:url('/img/pindemo.svg')"></div>
-					</div>
+							<fieldset w="33">
+								<h2>expire date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= g.end_date %>"/>
+								</div>
 
+							</fieldset>
 
+							<fieldset w="half" hideme>
+								<h2>decimal degrees</h2>
+								<div>
+									<input id="Latitude" type="text" placeholder="Latitude" value="<%= g.lat %>" />
+									<input id="Latitude" type="text" placeholder="Longitude" value="<%= g.lng %>" />
+								</div>
+							</fieldset>
 
-				</fieldset>
-				<fieldset w="full">
-					<h2>url</h2>
-					<div>
-						<!-- <input id="url" type="text" placeholder="add link"/> -->
-						<%= f.text_field :url, :id => "url", :as => :text, :placeholder => "add link"%>
-					</div>
-				</fieldset>
+							<fieldset w="half">
+								<h2>icon</h2>
+								<div inputFile>
+									<input type="text" placeholder="no file chosen"/>
+									<input id="adIcon" type="file" accept="image/png, image/svg" />
+									<div preview="" style="background-image:url('<%= g.default_photo.image.url %>')"></div>
+								</div>
+							</fieldset>
 
-				<fieldset w="full">
-					<h2>title</h2>
-					<div>
-						<!-- <input id="title" type="text" placeholder="add title"/> -->
-						<%= f.text_field :title, :id => "title", :as => :text, :placeholder => "add title"%>
-					</div>
-				</fieldset>
-				<fieldset w="full">
-					<h2>description</h2>
-					<div>
-						<!-- <textarea rows="3" placeholder="mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note"> -->
-						<!-- </textarea> -->
-						<%= f.text_area :description, :rows => 3, :placeholder => "mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note" %>
-					</div>
-				</fieldset>
+							<fieldset w="full" hideme>
+								<h2>url</h2>
+								<div><input id="url" type="text" placeholder="add link" value="<%= g.url %>" /></div>
+							</fieldset>
 
-				<fieldset w="33">
-					<div>
-						<!-- <input type="submit" value="submit"/> -->
-						<%= f.submit "submit" %>
-					</div>
-				</fieldset>
+							<fieldset w="full">
+								<h2>title</h2>
+								<div><input id="title" type="text" placeholder="add title" value="<%= g.title %>" /></div>
+							</fieldset>
+
+							<fieldset w="full">
+								<h2>description</h2>
+								<div>
+									<textarea rows="3" placeholder="mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note">
+										<%= g.description %>
+									</textarea>
+								</div>
+							</fieldset>
+
+						</li>
+						<% end %>	
 
 
-			<!-- </form> -->
-			<% end %>
+
+					</ul>
+
+
+
+				</li>
+				<li>
+					<h1>city</h1>
+
+					<ul>
+						<% @city_ads.each do |c| %>
+						<li status="list">
+							<fieldset w="33" hideme>
+								<h2>scale</h2>
+								<div select>
+									<input id="startDate" type="text" placeholder="choose level"/>
+									<select>
+
+										<option value='Global'>global</option>
+										<option value='City' selected="selected">city</option>
+										<option value='Road'>road</option>
+									</select>
+								</div>
+							</fieldset>
+
+							<fieldset w="33">
+								<h2>start date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= c.start_date %>" />
+								</div>
+
+							</fieldset>
+
+							<fieldset w="33">
+								<h2>expire date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= c.end_date %>"/>
+								</div>
+
+							</fieldset>
+
+							<fieldset w="half" hideme>
+								<h2>decimal degrees</h2>
+								<div>
+									<input id="Latitude" type="text" placeholder="Latitude" value="<%= c.lat %>" />
+									<input id="Latitude" type="text" placeholder="Longitude" value="<%= c.lng %>" />
+								</div>
+							</fieldset>
+
+							<fieldset w="half">
+								<h2>icon</h2>
+								<div inputFile>
+									<input type="text" placeholder="no file chosen"/>
+									<input id="adIcon" type="file" accept="image/png, image/svg" />
+									<div preview="" style="background-image:url('<%= c.default_photo.image.url %>')"></div>
+								</div>
+							</fieldset>
+
+							<fieldset w="full" hideme>
+								<h2>url</h2>
+								<div><input id="url" type="text" placeholder="add link" value="<%= c.url %>" /></div>
+							</fieldset>
+
+							<fieldset w="full">
+								<h2>title</h2>
+								<div><input id="title" type="text" placeholder="add title" value="<%= c.title %>" /></div>
+							</fieldset>
+
+							<fieldset w="full">
+								<h2>description</h2>
+								<div>
+									<textarea rows="3" placeholder="mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note">
+										<%= c.description %>
+									</textarea>
+								</div>
+							</fieldset>
+
+						</li>
+						<% end %>							
+					</ul>
+
+				</li>
+				<li>
+					<h1>road</h1>
+
+					<ul>
+						<% @road_ads.each do |r| %>
+						<li status="list">
+							<fieldset w="33" hideme>
+								<h2>scale</h2>
+								<div select>
+									<input id="startDate" type="text" placeholder="choose level"/>
+									<select>
+
+										<option value='Global'>global</option>
+										<option value='City'>city</option>
+										<option value='Road' selected="selected">road</option>
+									</select>
+								</div>
+							</fieldset>
+
+							<fieldset w="33">
+								<h2>start date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= r.start_date %>" />
+								</div>
+
+							</fieldset>
+
+							<fieldset w="33">
+								<h2>expire date</h2>
+								<div>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= r.end_date %>"/>
+								</div>
+
+							</fieldset>
+
+							<fieldset w="half" hideme>
+								<h2>decimal degrees</h2>
+								<div>
+									<input id="Latitude" type="text" placeholder="Latitude" value="<%= r.lat %>" />
+									<input id="Latitude" type="text" placeholder="Longitude" value="<%= r.lng %>" />
+								</div>
+							</fieldset>
+
+							<fieldset w="half">
+								<h2>icon</h2>
+								<div inputFile>
+									<input type="text" placeholder="no file chosen"/>
+									<input id="adIcon" type="file" accept="image/png, image/svg" />
+									<div preview="" style="background-image:url('<%= r.default_photo.image.url %>')"></div>
+								</div>
+							</fieldset>
+
+							<fieldset w="full" hideme>
+								<h2>url</h2>
+								<div><input id="url" type="text" placeholder="add link" value="<%= r.url %>" /></div>
+							</fieldset>
+
+							<fieldset w="full">
+								<h2>title</h2>
+								<div><input id="title" type="text" placeholder="add title" value="<%= r.title %>" /></div>
+							</fieldset>
+
+							<fieldset w="full">
+								<h2>description</h2>
+								<div>
+									<textarea rows="3" placeholder="mm/dd/yyyy - mm/dd/yyyy&#x0a;address&#x0a;note">
+										<%= r.description %>
+									</textarea>
+								</div>
+							</fieldset>
+
+						</li>
+						<% end %>											
+					</ul>
+
+				</li>
+				<li>
+					<h1>whats next</h1>
+
+					<ul></ul>
+
+				</li>
+
+				</div></form>
+			</ul>
+
+
+
+
 		</div>
 
 	</div>
@@ -133,15 +290,22 @@
 
 
 
-        <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-        <!-- // <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script> -->
-        <!-- // <script src="js/plugins.js"></script> -->
-        <!-- // <script src="js/main.js"></script> -->
+
+
+
+
+
+
+
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script> -->
 
 		<script type="text/javascript">
 
 
-			$('select').change(function(){
+$('select').change(function(){
 				$(this).prev().val($(this).val())
 			})
 
@@ -156,10 +320,22 @@
 
 			})
 
+			$('textarea, input')
+			.on('focus',function(){
+
+
+				$(this).closest('li').attr('status','edit')
+
+			}).closest('.listAds').on('click',function(e){
+				if(!$(e.target).is('input')&&!$(e.target).is('textarea') &&!$(e.target).is('select') ){
+					$(this).find('[status="edit"]').attr('status','list')
+
+				}
+			})
+
 
 
 		</script>
-
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

@@ -14,6 +14,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  user_id     :integer
+#  aasm_state  :string(255)      default("unavailable")
 #
 
 require 'test_helper'

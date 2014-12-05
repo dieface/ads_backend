@@ -16,6 +16,7 @@
 /tmp
 
 # .gitignore from https://github.com/github/gitignore/blob/master/Rails.gitignore
+*.DS_Store
 *.rbc
 capybara-*.html
 .rspec
