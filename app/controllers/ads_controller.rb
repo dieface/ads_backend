@@ -74,7 +74,8 @@ class AdsController < ApplicationController
 	end
 
 	def image_full_path(img_url)
-	    request.protocol + request.host_with_port + img_url
+	    # request.protocol + request.host_with_port + img_url
+	    "http://54.65.144.107" + img_url
 	end	
 
 	private
