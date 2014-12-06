@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204235349) do
+ActiveRecord::Schema.define(version: 20141206081103) do
 
   create_table "ads", force: true do |t|
     t.string   "scale"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20141204235349) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "posts", force: true do |t|
+    t.string   "type"
+    t.text     "content"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "address"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "aasm_state", default: "available"
+  end
+
+  add_index "posts", ["aasm_state"], name: "index_posts_on_aasm_state"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "",    null: false
