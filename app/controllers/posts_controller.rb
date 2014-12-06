@@ -5,9 +5,35 @@ class PostsController < ApplicationController
 	end
 
 	def new
+		@post = Post.new
 	end
 
 	def create
+		# email = params[:email]
+
+		# # Normal Post
+		# unless email.blank?
+		# 	# Check user exists in db, if not create user
+		# 	if (User.find_by email: email).blank?
+		# 		@user = params[:user] ? User.new(params[:user]) : User.new_guest
+		# 		@user.save
+		# 	end
+
+		# 	# Create post
+		# 	@post = Post.new(post_params)
+		# 	@post.author = @user
+
+		# # Official Post
+		# else
+		# 	@post = current_user.posts.build(post_params)
+		# end
+		puts params[:type]
+		puts params[:content]
+		@post = Post.new(:type => params[:type], :content => params[:content])
+		if @post.save
+			redirect_to ads_path
+		else
+		end
 	end
 
 	def edit
@@ -25,7 +51,6 @@ class PostsController < ApplicationController
 	private
 
   def post_params
-		params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description, :photos_attributes => [:image])
-		# params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description)
+		params.require(:post).permit(:type, :content, :lat, :lng, :address, :start_date, :end_date)
   end	
 end

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
     resources :ads
   end
 
+  resources :posts do
+  end
+
   devise_scope :user do
     authenticated :user do
       root 'ads#new', as: :authenticated_root
