@@ -3,7 +3,7 @@
 # Table name: posts
 #
 #  id         :integer          not null, primary key
-#  type       :string(255)
+#  genre      :string(255)
 #  content    :text
 #  lat        :float
 #  lng        :float
@@ -19,7 +19,7 @@
 class Post < ActiveRecord::Base
 	belongs_to :author, :class_name => "User", :foreign_key => :user_id
 
-	validate :type, :presence => true
+	validate :genre, :presence => true
 	validate :content, :presence => true
 
 	def editable_by?(usr)

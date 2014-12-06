@@ -17,6 +17,9 @@
 #  updated_at             :datetime
 #  name                   :string(255)
 #  is_admin               :boolean          default(FALSE)
+#  guest                  :boolean
+#  profile_photo          :string(255)
+#  fb_data                :text
 #
 
 require 'test_helper'

@@ -17,6 +17,9 @@
 #  updated_at             :datetime
 #  name                   :string(255)
 #  is_admin               :boolean          default(FALSE)
+#  guest                  :boolean
+#  profile_photo          :string(255)
+#  fb_data                :text
 #
 
 class User < ActiveRecord::Base
@@ -31,7 +34,7 @@ class User < ActiveRecord::Base
   # validates_confirmation_of :password
 
   has_many :ads, dependent: :destroy
-  has_many :post, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   # override has_secure_password to customize validation until Rails 4.
   # require 'bcrypt'
@@ -41,13 +44,4 @@ class User < ActiveRecord::Base
   def admin?
     is_admin
   end  
-
-  # def self.new_guest
-  #   new { |u| u.guest = true }
-  # end
-  
-  # def name
-  #   guest ? "Guest" : name
-  # end
-
 end

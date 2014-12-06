@@ -3,7 +3,7 @@
 # Table name: posts
 #
 #  id         :integer          not null, primary key
-#  type       :string(255)
+#  genre      :string(255)
 #  content    :text
 #  lat        :float
 #  lng        :float

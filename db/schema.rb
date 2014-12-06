@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206150755) do
+ActiveRecord::Schema.define(version: 20141206180535) do
 
   create_table "ads", force: true do |t|
     t.string   "scale"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20141206150755) do
   end
 
   create_table "posts", force: true do |t|
-    t.string   "type"
+    t.string   "genre"
     t.text     "content"
     t.float    "lat"
     t.float    "lng"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20141206150755) do
     t.string   "name"
     t.boolean  "is_admin",               default: false
     t.boolean  "guest"
+    t.string   "profile_photo"
+    t.text     "fb_data"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
