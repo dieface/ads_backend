@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	
   has_many :ads
+  has_many :post
 
   def admin?
     is_admin
