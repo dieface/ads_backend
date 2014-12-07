@@ -19,6 +19,7 @@
 *.DS_Store
 public/uploads/
 public/ads.json
+public/posts.json
 *.rbc
 capybara-*.html
 .rspec

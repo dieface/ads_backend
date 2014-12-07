@@ -16,8 +16,7 @@ class PostsController < ApplicationController
 		if genre == 'official'
 
 			# Create post
-			@user = current_user
-			@post = @user.posts.build(post_params)
+			@post = current_user.posts.build(post_params)
 
 		#	Normal Post (from mobile app)
 		elsif genre == 'normal'
@@ -35,7 +34,7 @@ class PostsController < ApplicationController
 		end
 		
 		if @post.save
-			write_json(@user)
+			write_json
 			redirect_to posts_path
 		else
 			render :new
@@ -51,29 +50,35 @@ class PostsController < ApplicationController
 	def destroy
 	end
 
-	def write_json(user)
+	def write_json
 	  posts_json = []
+	  
+	  puts "**** in write_json"
+	  
 
 	  Post.all.each do |post|
+	  	puts "post.user_id = " + post.user_id.to_s
+	  	user = User.find(post.user_id)
+
 	    post_json = {
 
 	    	# Post
 				"id"         => post.id,
-				"genre"      => post.genre,
-				"content"    => post.content,
-				"lat"        => post.lat,
-				"lng"        => post.lng,
-				"address"    => post.address,
-				"start_date" => post.start_date,
-				"end_date"   => post.end_date,
-				"created_at" => post.created_at,
-				"updated_at" => post.updated_at,
-				"user_id"    => post.user_id,
-				"aasm_state" => post.aasm_state,
+				"genre"      => get_str(post.genre),
+				"content"    => get_str(post.content),
+				"lat"        => get_str(post.lat),
+				"lng"        => get_str(post.lng),
+				"address"    => get_str(post.address),
+				"start_date" => get_str(post.start_date),
+				"end_date"   => get_str(post.end_date),
+				"created_at" => get_str(post.created_at),
+				"updated_at" => get_str(post.updated_at),
+				"user_id"    => get_str(post.user_id),
+				"aasm_state" => get_str(post.aasm_state),
 
 				# User
-				"name"			 => user.name,
-				"profile_photo_url"			 => user.profile_photo
+				"name"			 => get_str(user.name),
+				"profile_photo_url"			 => get_str(user.profile_photo)
 	    } 
 	    posts_json << post_json
 	  end
@@ -84,6 +89,16 @@ class PostsController < ApplicationController
 	end
 
 	private
+
+	def get_str(str)
+		if str
+			str.to_s
+		else
+			''
+		end
+		# str.nil ? "" : str.to_s
+	end
+
 
   def post_params
 		# params.require(:post).permit(:genre, :content, :lat, :lng, :address, :start_date, :end_date)
