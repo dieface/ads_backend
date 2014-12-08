@@ -16,17 +16,20 @@
 
 			<li>ubike radio</li>
 			<ul>
-				<li onclick="location.href='/listAll.html'">list all</li>
-				<li onclick="location.href='/newPost.html'">new post</li>
+				<li onclick="location.href='<%= posts_path %>'">list all</li>
+				<li onclick="location.href='<%= new_post_path %>'">new post</li>
 			</ul>
 			<li>lbs ad manager</li>
 			<ul>
-				<li onclick="location.href='/onlineAds.html'">online</li>
-				<li onclick="location.href='/incomming.html'">incomming</li>
-				<li onclick="location.href='/newAds.html'">create new</li>
+<!-- 				<li onclick="location.href='/onlineAds.html'">online</li> -->
+				<li onclick="location.href='<%= available_ads_path %>'">online</li>
+				<li onclick="location.href='<%= unavailable_ads_path %>'">incomming</li>
+				<li onclick="location.href='<%= new_ad_path %>'">create new</li>
 
 			</ul>
-			<li>logout</li>
+			<!-- <li>logout</li> -->
+			<!-- <li onclick="location.href='<%= destroy_user_session_path %>'">logout</li> -->
+			<li><%= link_to('logout', destroy_user_session_path, :method => :delete) %></li>
 		</ul>
 	</div>
 	<div id="content">

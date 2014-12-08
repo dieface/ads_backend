@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
 	def index
-		Post.all
+		@posts = Post.all
 	end
 
 	def new
@@ -11,12 +11,22 @@ class PostsController < ApplicationController
 	def create
 
 		genre = params[:genre]
+		@post = current_user.posts.build(post_params)
 
 		# Official Post (from web browser)
 		if genre == 'official'
 
 			# Create post
-			@post = current_user.posts.build(post_params)
+			
+			# puts current_user.name
+			# puts current_user.email
+
+			# if @post.save
+			# 	write_json
+			# 	redirect_to posts_path
+			# else
+			# 	render :new
+			# end
 
 		#	Normal Post (from mobile app)
 		elsif genre == 'normal'
@@ -31,6 +41,13 @@ class PostsController < ApplicationController
 			# Create post
 			@post = Post.new(:genre => params[:genre], :content => params[:content], :lat => params[:lat], :lng => params[:lng], :address => params[:address])
 			@post.author = @user
+
+			# if @post.save
+			# 	write_json
+			# 	redirect_to posts_path
+			# else
+			# 	render :new
+			# end
 		end
 		
 		if @post.save
@@ -83,7 +100,7 @@ class PostsController < ApplicationController
 	    posts_json << post_json
 	  end
 
-	  File.open("public/posts.json","w") do |f|
+	  File.open("public/posts.json","wb") do |f|
 	    f.write(posts_json.to_json)
 	  end 		
 	end
