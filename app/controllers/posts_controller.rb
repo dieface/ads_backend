@@ -83,7 +83,7 @@ class PostsController < ApplicationController
 	    posts_json << post_json
 	  end
 
-	  File.open("public/posts.json","wb") do |f|
+	  File.open("public/posts.json","w") do |f|
 	    f.write(posts_json.to_json)
 	  end 		
 	end
