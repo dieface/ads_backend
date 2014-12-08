@@ -59,8 +59,8 @@
 					<div message><%= p.content %></div>
 					<div controler>
 						<div>
-							<span controler="delete">delete</span>
-
+							<!-- <span controler="delete">delete</span> -->
+							<span> <%= link_to("delete", post_path(p), :controler => "delete", :method => :delete, :confirm => "Are you sure?") %> </span>
 						</div>
 					</div>
 				</li>

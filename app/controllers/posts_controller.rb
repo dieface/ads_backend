@@ -10,23 +10,13 @@ class PostsController < ApplicationController
 
 	def create
 
-		genre = params[:genre]
-		@post = current_user.posts.build(post_params)
+		genre = params[:genre] || params[:post][:genre]
 
 		# Official Post (from web browser)
 		if genre == 'official'
 
 			# Create post
-			
-			# puts current_user.name
-			# puts current_user.email
-
-			# if @post.save
-			# 	write_json
-			# 	redirect_to posts_path
-			# else
-			# 	render :new
-			# end
+			@post = current_user.posts.build(post_params)
 
 		#	Normal Post (from mobile app)
 		elsif genre == 'normal'
@@ -42,12 +32,6 @@ class PostsController < ApplicationController
 			@post = Post.new(:genre => params[:genre], :content => params[:content], :lat => params[:lat], :lng => params[:lng], :address => params[:address])
 			@post.author = @user
 
-			# if @post.save
-			# 	write_json
-			# 	redirect_to posts_path
-			# else
-			# 	render :new
-			# end
 		end
 		
 		if @post.save
@@ -65,6 +49,9 @@ class PostsController < ApplicationController
 	end
 
 	def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to :back	
 	end
 
 	def write_json
@@ -95,7 +82,10 @@ class PostsController < ApplicationController
 
 				# User
 				"name"			 => get_str(user.name),
-				"profile_photo_url"			 => get_str(user.profile_photo)
+				"profile_photo_url"			 => get_str(user.profile_photo),
+
+				# Custom for mobile app
+				"distance"	 => ''
 	    } 
 	    posts_json << post_json
 	  end
