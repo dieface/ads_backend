@@ -65,17 +65,29 @@
 					</div>
 
 				</fieldset>
-<fieldset w="half">
+				<!-- <fieldset w="half">
+					<h2>decimal degrees</h2>
+					<div> -->
+						<!-- <input id="Latitude" type="text" placeholder="Latitude,Longitude"/> -->
+						<%# f.text_field :lat, :id => "Latitude", :as => :text, :placeholder => "Latitude"%>
+						<%# f.text_field :lng, :id => "Latitude", :as => :text, :placeholder => "Longitude"%>
+					<!-- </div>
+				</fieldset>-->
+
+				<fieldset w="25">
 					<h2>decimal degrees</h2>
 					<div>
-						<!-- <input id="Latitude" type="text" placeholder="Latitude,Longitude"/> -->
-						<%= f.text_field :lat, :id => "Latitude", :as => :text, :placeholder => "Latitude"%>
-						<%= f.text_field :lng, :id => "Latitude", :as => :text, :placeholder => "Longitude"%>
+					<!-- <input as="text" id="Latitude" name="ad[lat]" placeholder="Latitude" type="text"> -->
+					<%= f.text_field :lat, :id => "Latitude", :as => :text, :placeholder => "Latitude"%>
 					</div>
-
-
-
 				</fieldset>
+				<fieldset class="Longitude" w="25">
+					<div>
+					<!-- <input as="text" id="Latitude" name="ad[lng]" placeholder="Longitude" type="text"> -->
+					<%= f.text_field :lng, :id => "Latitude", :as => :text, :placeholder => "Longitude"%>
+					</div>
+				</fieldset>		
+
 				<fieldset w="half">
 					<h2>icon</h2>
 					<div inputFile>

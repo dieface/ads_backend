@@ -21,7 +21,12 @@ textarea {
 
 html {
     font-size: 1em;
-    line-height: 1.4;
+    line-height: 1.4;ne
+}
+
+body{
+	margin:0;
+	font-family: sans-serif
 }
 
 /*
@@ -227,6 +232,9 @@ ul.menu > li:last-child{
 	cursor: pointer;
 	text-decoration: underline
 }
+ul.menu > li:last-child a {
+	color: #888;
+}
 ul.menu > li:last-child:hover{
 	opacity: .5
 }
@@ -333,7 +341,7 @@ ul.radioPost [message]{
 	letter-spacing: .05em
 }
 
-ul.radioPost li div[controler]{
+ul.radioPost li div[controler] {
 position: absolute;
 	right: 0;bottom:0;
 	transition: .2s ease-out;
@@ -342,7 +350,7 @@ position: absolute;
 
 }
 
-ul.radioPost li span[controler="delete"]{
+ul.radioPost li span[controler="delete"] {
 	display: inline-block;
 	padding: 1em 3em;
 	font-size: .8em;
@@ -352,6 +360,12 @@ ul.radioPost li span[controler="delete"]{
 	transition: .2s ease-out
 
 }
+
+ul.radioPost li span[controler="delete"] a {
+	text-decoration: none;
+	color: #EF6370;
+}
+
 /*
 ul.radioPost li span[controler="delete"]:hover{
 	transform: scale(1.05)
@@ -416,6 +430,9 @@ fieldset > h2{
 }
 fieldset[w="20"]{
 	width: 20%
+}
+fieldset[w=“25”]{
+	width: 25%
 }
 fieldset[w="33"]{
 	width: 33.333%
