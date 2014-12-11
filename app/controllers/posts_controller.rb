@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 	  puts "**** in write_json"
 	  
 
-	  Post.all.each do |post|
+	  Post.all.order(created_at: :desc).each do |post|
 	  	puts "post.user_id = " + post.user_id.to_s
 	  	user = User.find(post.user_id)
 
@@ -85,7 +85,9 @@ class PostsController < ApplicationController
 				"profile_photo_url"			 => get_str(user.profile_photo),
 
 				# Custom for mobile app
-				"distance"	 => ''
+				# "reloaded" 	 => '0'
+				# "distance"	 => '',
+				# "time_interval" => ''
 	    } 
 	    posts_json << post_json
 	  end
