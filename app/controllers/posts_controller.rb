@@ -73,10 +73,10 @@ class PostsController < ApplicationController
 				"lat"        => get_str(post.lat),
 				"lng"        => get_str(post.lng),
 				"address"    => get_str(post.address),
-				"start_date" => get_str(post.start_date),
-				"end_date"   => get_str(post.end_date),
-				"created_at" => get_str(post.created_at),
-				"updated_at" => get_str(post.updated_at),
+				"start_date" => get_iso8601(post.start_date),
+				"end_date"   => get_iso8601(post.end_date),
+				"created_at" => get_iso8601(post.created_at),
+				"updated_at" => get_iso8601(post.updated_at),
 				"user_id"    => get_str(post.user_id),
 				"aasm_state" => get_str(post.aasm_state),
 
@@ -85,7 +85,6 @@ class PostsController < ApplicationController
 				"profile_photo_url"			 => get_str(user.profile_photo),
 
 				# Custom for mobile app
-				# "reloaded" 	 => '0'
 				# "distance"	 => '',
 				# "time_interval" => ''
 	    } 
@@ -108,6 +107,13 @@ class PostsController < ApplicationController
 		# str.nil ? "" : str.to_s
 	end
 
+	def get_iso8601(date)
+		if date
+			date.iso8601
+		else
+			''
+		end
+	end
 
   def post_params
 		# params.require(:post).permit(:genre, :content, :lat, :lng, :address, :start_date, :end_date)
