@@ -33,6 +33,7 @@ class Ad < ActiveRecord::Base
 	validates :description, :presence => true
 	validates :photos, :presence => true
 
+	attr_accessor :time_zone_offset
   # before_save :parse_date
 	# after_save 	:write_json
 

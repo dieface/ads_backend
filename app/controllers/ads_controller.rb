@@ -6,9 +6,10 @@ class AdsController < ApplicationController
 
 	def available
 		# @ads = current_user.ads.find_by aasm_state: 'available'
-		
-		time_current = Time.current
-		@ads = current_user.ads.where("start_date <= ? AND end_date >= ?", time_current, time_current)
+		@ads = current_user.ads.where("aasm_state == ?", 'available')
+
+		# time_current = Time.current
+		# @ads = current_user.ads.where("start_date <= ? AND end_date >= ?", time_current, time_current)
 
 		@ads.each do |ad|
 			if ad.aasm_state == "available"
@@ -24,9 +25,10 @@ class AdsController < ApplicationController
 
 	def unavailable
 		# @ads = Ad.find_by aasm_state: 'unavailable'
-
-		time_current = Time.current
 		@ads = current_user.ads.where("aasm_state == ?", 'unavailable')
+
+		# time_current = Time.current
+		# @ads = current_user.ads.where("start_date > ?", time_current)
 
 		@global_ads = @ads.where("scale == ?", 'Global')
 		@city_ads = @ads.where("scale == ?", 'City')
@@ -44,7 +46,11 @@ class AdsController < ApplicationController
 
 	def create
 		@ad = current_user.ads.build(ad_params)
-		@ad.end_date = DateTime.new(@ad.end_date.year, @ad.end_date.month, @ad.end_date.day, 23, 59, 59, 0)
+		@ad.aasm_state = "available"
+		# @ad.start_date = DateTime.new(@ad.start_date.year, @ad.start_date.month, @ad.start_date.day, 0, 0, 0, @ad.time_zone_offset)
+		# @ad.end_date = DateTime.new(@ad.end_date.year, @ad.end_date.month, @ad.end_date.day, 23, 59, 59, 0)
+		# @ad.end_date = DateTime.new(@ad.end_date.year, @ad.end_date.month, @ad.end_date.day, 23, 59, 59, @ad.time_zone_offset)
+
 		if @ad.save
 			write_json
 			# redirect_to ads_path
@@ -109,7 +115,7 @@ class AdsController < ApplicationController
 	end
 
   def ad_params
-		params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description, :photos_attributes => [:image])
+		params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description, :time_zone_offset, :photos_attributes => [:image])
 		# params.require(:ad).permit(:scale, :start_date, :end_date, :lat, :lng, :url, :title, :description)
   end
 

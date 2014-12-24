@@ -49,6 +49,7 @@
 						</select>
 					</div>
 				</fieldset>
+				<%= f.hidden_field :time_zone_offset, :id => "timeZoneOffset" %>
 				<fieldset w="33">
 					<h2>start date</h2>
 					<div>
@@ -183,9 +184,12 @@
 			 
 			function timeStamp() {
 			// Create a date object with the current time
-			  var now = new Date();
-			  now.setTime(now.getTime() - now.getTimezoneOffset()*60*1000);
-			 
+		  var now = new Date();
+		  var timeZoneOffset = now.getTimezoneOffset();
+		  // now.setTime(now.getTime() + timeZoneOffset*60*1000);
+		  var timeZoneOffsetInHour = timeZoneOffset / 60;
+		 	$("#timeZoneOffset").val(timeZoneOffsetInHour);
+			 	
 			// Create an array with the current month, day and time
 			  var date = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
 			 
