@@ -40,18 +40,18 @@
 				<%= f.hidden_field :genre, :value => "official" %>
 				<fieldset w="33">
 					<h2>label</h2>
-					<div><input type="text" placeholder="labelname" value="公告" /></div>
+					<div><input type="text" placeholder="Label Name" value="公告" /></div>
 				</fieldset>
 				<fieldset w="66">
 					<h2>due date</h2>
 					<div>
 						<!-- <input id="startDate" type="text" placeholder="start mm-dd-yyyy"/> -->
-						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "start 2011-05-19 10:30:14"%>
+						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "2014-12-19" %>
 					</div>
 					<h2>to</h2>
 					<div>
 						<!-- <input id="expireDate" type="text" placeholder="expire mm-dd-yyyy"/> -->
-						<%= f.text_field :end_date, :id => "expireDate", :as => :text, :placeholder => "end 2011-05-19 10:30:14"%>						
+						<%= f.text_field :end_date, :id => "expireDate", :as => :text, :placeholder => "2014-12-20" %>						
 					</div>
 				</fieldset>
 				<fieldset w="full">
@@ -85,18 +85,51 @@
 		<script type="text/javascript">
 
 			$(document).ready(function(){
-				var dateType = new Date();
-				var defaultDate = dateType.getMonth()+1+''+dateType.getDate()+(dateType.getYear()+1900);
+				// var dateType = new Date();
+				// var defaultDate = dateType.getMonth()+1+''+dateType.getDate()+(dateType.getYear()+1900);
+				
+				/**
+				 * Return a timestamp with the format "yyyy-mm-dd"
+				 * @type {Date}
+				 */
+				 
+				function timeStamp() {
+				// Create a date object with the current time
+				  var now = new Date();
+				  now.setTime(now.getTime() - now.getTimezoneOffset()*60*1000);
+				 
+				// Create an array with the current month, day and time
+				  var date = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
+				 
+				// Create an array with the current hour, minute and second
+				  // var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+				 
+				// Determine AM or PM suffix based on the hour
+				  // var suffix = ( time[0] < 12 ) ? "AM" : "PM";
+				 
+				// Convert hour from military time
+				  // time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
+				 
+				// If hour is 0, set it to 12
+				  // time[0] = time[0] || 12;
+				 
+				// If seconds and minutes are less than 10, add a zero
+				  // for ( var i = 1; i < 3; i++ ) {
+				  //   if ( time[i] < 10 ) {
+				  //     time[i] = "0" + time[i];
+				  //   }
+				  // }
+				 
+				// Return the formatted string
+				  // return date.join("-") + " " + time.join(":") + " " + suffix;
+				  return date.join("-");
+				}
 
-
-				$(this).find('#startDate').val(defaultDate)
-				$(this).find('#expireDate').val(defaultDate)
+				var defaultDate = timeStamp();
+				$(this).find('#startDate').val(defaultDate);
+				$(this).find('#expireDate').val(defaultDate);
 				//default expire date = defaultDate + 7 days
 			})
-
-
-
-
 
 		</script>
 

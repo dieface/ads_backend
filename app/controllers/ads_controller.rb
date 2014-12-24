@@ -44,9 +44,11 @@ class AdsController < ApplicationController
 
 	def create
 		@ad = current_user.ads.build(ad_params)
+		@ad.end_date = DateTime.new(@ad.end_date.year, @ad.end_date.month, @ad.end_date.day, 23, 59, 59, 0)
 		if @ad.save
 			write_json
-			redirect_to ads_path
+			# redirect_to ads_path
+			redirect_to available_ads_path
 		else
 			render :new
 		end

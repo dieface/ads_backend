@@ -60,7 +60,7 @@
 							<fieldset w="33">
 								<h2>start date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= g.start_date %>" />
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= g.start_date.to_date %>" />
 								</div>
 
 							</fieldset>
@@ -68,7 +68,7 @@
 							<fieldset w="33">
 								<h2>expire date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= g.end_date %>"/>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= g.end_date.to_date %>"/>
 								</div>
 
 							</fieldset>
@@ -141,7 +141,7 @@
 							<fieldset w="33">
 								<h2>start date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= c.start_date %>" />
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= c.start_date.to_date %>" />
 								</div>
 
 							</fieldset>
@@ -149,7 +149,7 @@
 							<fieldset w="33">
 								<h2>expire date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= c.end_date %>"/>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= c.end_date.to_date %>"/>
 								</div>
 
 							</fieldset>
@@ -217,7 +217,7 @@
 							<fieldset w="33">
 								<h2>start date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= r.start_date %>" />
+									<input id="startDate" type="text" placeholder="from mmddyyyy" value="<%= r.start_date.to_date %>" />
 								</div>
 
 							</fieldset>
@@ -225,7 +225,7 @@
 							<fieldset w="33">
 								<h2>expire date</h2>
 								<div>
-									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= r.end_date %>"/>
+									<input id="startDate" type="text" placeholder="to mmddyyyy"  value="<%= r.end_date.to_date %>"/>
 								</div>
 
 							</fieldset>
@@ -272,7 +272,7 @@
 
 				</li>
 				<li>
-					<h1>whats next</h1>
+					<!-- <h1>whats next</h1> -->
 
 					<ul></ul>
 

@@ -41,7 +41,7 @@
 					<h2>scale</h2>
 					<div select>
 						<!-- <input id="startDate" type="text" placeholder="choose level"/> -->
-						<%= f.text_field :scale, :id => "startDate", :as => :text, :placeholder => "choose level"%>
+						<%= f.text_field :scale, :as => :text, :placeholder => "choose level"%>
 						<select>
 							<option value='Global'>global</option>
 							<option value='City'>city</option>
@@ -53,7 +53,8 @@
 					<h2>start date</h2>
 					<div>
 						<!-- <input id="startDate" type="text" placeholder="from mmddyyyy"/> -->
-						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "from 2011-05-19 10:30:14"%>
+						<%# f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "from 2014-12-19 10:30:14"%>
+						<%= f.text_field :start_date, :id => "startDate", :as => :text, :placeholder => "2014-12-19" %>
 					</div>
 
 				</fieldset>
@@ -61,7 +62,8 @@
 					<h2>expire date</h2>
 					<div>
 						<!-- <input id="startDate" type="text" placeholder="to mmddyyyy"/> -->
-						<%= f.text_field :end_date, :id => "startDate", :as => :text, :placeholder => "to 2011-05-20 10:30:14"%>
+						<%# f.text_field :end_date, :id => "startDate", :as => :text, :placeholder => "to 2014-12-20 10:30:14"%>
+						<%= f.text_field :end_date, :id => "endDate", :as => :text, :placeholder => "2014-12-20" %>
 					</div>
 
 				</fieldset>
@@ -153,7 +155,7 @@
         <!-- // <script src="js/main.js"></script> -->
 
 		<script type="text/javascript">
-
+			$('select').prev().val("Global");
 
 			$('select').change(function(){
 				$(this).prev().val($(this).val())
@@ -170,7 +172,46 @@
 
 			})
 
-
+			var now_date = timeStamp();
+			$('#startDate').val(now_date);
+			$('#endDate').val(now_date);
+			
+			/**
+			 * Return a timestamp with the format "yyyy-mm-dd"
+			 * @type {Date}
+			 */
+			 
+			function timeStamp() {
+			// Create a date object with the current time
+			  var now = new Date();
+			  now.setTime(now.getTime() - now.getTimezoneOffset()*60*1000);
+			 
+			// Create an array with the current month, day and time
+			  var date = [now.getFullYear(), now.getMonth() + 1, now.getDate()];
+			 
+			// Create an array with the current hour, minute and second
+			  // var time = [ now.getHours(), now.getMinutes(), now.getSeconds() ];
+			 
+			// Determine AM or PM suffix based on the hour
+			  // var suffix = ( time[0] < 12 ) ? "AM" : "PM";
+			 
+			// Convert hour from military time
+			  // time[0] = ( time[0] < 12 ) ? time[0] : time[0] - 12;
+			 
+			// If hour is 0, set it to 12
+			  // time[0] = time[0] || 12;
+			 
+			// If seconds and minutes are less than 10, add a zero
+			  // for ( var i = 1; i < 3; i++ ) {
+			  //   if ( time[i] < 10 ) {
+			  //     time[i] = "0" + time[i];
+			  //   }
+			  // }
+			 
+			// Return the formatted string
+			  // return date.join("-") + " " + time.join(":") + " " + suffix;
+			  return date.join("-");
+			}
 
 		</script>
 

@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'ads#new', as: :authenticated_root
+      root 'ads#available', as: :authenticated_root
       # root :to => 'admin/ads#new'
     end
 
