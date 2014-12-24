@@ -56,6 +56,7 @@ class PostsController < ApplicationController
 	def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    write_json
     redirect_to :back	
 	end
 

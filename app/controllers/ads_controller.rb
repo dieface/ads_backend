@@ -81,7 +81,7 @@ class AdsController < ApplicationController
 	def destroy
 		@ad = current_user.ads.find(params[:id])
 		@ad.destroy
-
+		write_json
 		# redirect_to ads_path
 		redirect_to :back	
 	end
