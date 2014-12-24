@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :ads do
+    get 'all', on: :collection
     get 'available', on: :collection
     get 'unavailable', on: :collection
   end
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
+    get 'all', on: :collection
   end
 
   devise_scope :user do

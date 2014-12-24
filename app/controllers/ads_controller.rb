@@ -35,6 +35,10 @@ class AdsController < ApplicationController
 		@road_ads = @ads.where("scale == ?", 'Road')		
 	end
 
+	def all
+		@ads = Ad.all
+	end
+
 	def index
 		@ads = Ad.all
 	end
@@ -78,7 +82,8 @@ class AdsController < ApplicationController
 		@ad = current_user.ads.find(params[:id])
 		@ad.destroy
 
-		redirect_to ads_path
+		# redirect_to ads_path
+		redirect_to :back	
 	end
 
 	def image_full_path(img_url)

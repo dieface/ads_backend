@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
 
+	def all
+		@posts = Post.all.order(created_at: :desc)
+	end
+
 	def index
 		@posts = Post.all.order(created_at: :desc)
 	end
@@ -17,6 +21,7 @@ class PostsController < ApplicationController
 
 			# Create post
 			@post = current_user.posts.build(post_params)
+			@post.end_date = DateTime.new(@post.end_date.year, @post.end_date.month, @post.end_date.day, 23, 59, 59, 0)
 
 		#	Normal Post (from mobile app)
 		elsif genre == 'normal'

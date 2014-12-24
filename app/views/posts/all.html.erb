@@ -1,0 +1,46 @@
+<h1>All of Posts</h1>
+<!-- #  scale       :string(255)
+#  start_date  :datetime
+#  end_date    :datetime
+#  lat         :float
+#  lng         :float
+#  url         :string(255)
+#  title       :string(255)
+#  description :text
+#  user_id     :integer
+#  default_photo
+ -->
+
+<h1>Posts</h1>
+<table>
+  <thead>
+    <tr>
+	    <th>Id</th>
+      <th>Genre</th>
+      <th>Content</th>
+      <th>Lat</th>
+      <th>Lng</th>
+      <th>Address</th>
+      <th>Start_date</th>
+      <th>End_date</th>
+      <th>Op</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+    <tr>
+      <td> <%= post.id %> </td>
+      <td> <%= post.genre %> </td>
+      <td> <%= post.lat %> </td>
+      <td> <%= post.lng %> </td>
+      <td> <%= post.address %> </td>
+      <td> <%= post.start_date %> </td>
+      <td> <%= post.end_date %> </td>
+      <td> 
+        <%= link_to("Delete", post_path(post), :method => :delete) %>
+      </td>      
+    </tr>
+    <% end %>
+
+  </tbody>
+</table>
