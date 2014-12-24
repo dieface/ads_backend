@@ -90,7 +90,7 @@ class AdsController < ApplicationController
 
 	def write_json
 	  ads_json = []
-	  Ad.all.each do |ad|
+	  Ad.where("aasm_state == ?", 'available').each do |ad|
 	    ad_json = {
 				"id" => ad.id,
 				"scale" => ad.scale,
